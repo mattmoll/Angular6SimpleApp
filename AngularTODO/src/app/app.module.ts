@@ -6,6 +6,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ItemFormComponent } from './components/item-form/item-form.component';
 import { ItemsComponent } from './components/items/items.component';
 
+import {ItemService} from './services/item.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,7 @@ import { ItemsComponent } from './components/items/items.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [ItemService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
