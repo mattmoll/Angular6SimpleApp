@@ -1,3 +1,18 @@
-<p>
-  item-form works!
-</p>
+<div class="card card-body">
+  <form>
+    <div class="form-group">
+      <label for="inputState">Description</label>
+      <input type="text" class="form-control mb-3" placeholder="Add item TO DO">
+
+      <label for="inputState">Priority</label>
+      <select  class="form-control">
+        <option *ngFor="let priority of priorities" value="{{priority[0]}}">{{priority[1]}}</option>
+      </select>
+
+    </div>  
+
+    <button type="submit" class="btn btn-primary float-right">Add</button>
+
+  </form>
+
+</div>

@@ -6,8 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./item-form.component.css']
 })
 export class ItemFormComponent implements OnInit {
+  
+  priorities : [number, string][];
 
-  constructor() { }
+  constructor() { 
+    this.priorities = [[1,"Very High"], [2, "High"],[3, "Medium"],[4, "Low"]];
+  }
 
   ngOnInit() {
   }
