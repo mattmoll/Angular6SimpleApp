@@ -2,17 +2,18 @@
   <form>
     <div class="form-group">
       <label for="inputState">Description</label>
-      <input type="text" class="form-control mb-3" placeholder="Add item TO DO">
+      <input type="text" class="form-control mb-3" name="description" [(ngModel)]="itemOnScreen.description" placeholder="Add item TO DO">
 
       <label for="inputState">Priority</label>
-      <select  class="form-control">
-        <option *ngFor="let priority of priorities" value="{{priority[0]}}">{{priority[1]}}</option>
+      <select  name="priority" [(ngModel)]="itemOnScreen.priority" class="form-control">
+        <option *ngFor="let priorityTuple of priorities" value="{{priorityTuple[0]}}">{{priorityTuple[1]}}</option>
       </select>
 
     </div>  
 
-    <button type="submit" class="btn btn-primary float-right" [disabled]="!this.text">Add</button>
+    <button type="submit" class="btn btn-primary float-right" (click)="onSaveClicked()" [disabled]="!this.itemOnScreen.description || !this.itemOnScreen.priority">{{this.buttonText}}</button>
 
+    <button class="btn btn-danger float-left" (click)="resetItemForm()" [hidden]="!this.isEditing">Cancel</button>
   </form>
 
 </div>

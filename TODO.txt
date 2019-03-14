@@ -1,6 +1,8 @@
 TODO:
 
-- Style navbar (logo + home button)
+- Style navbar (logo from font awesome probably right aligned)
 
-- Create form for item-form component
+- Add persistence to local storage.
+
+- Play with the priorities (background colors, vs ordering, or both).
 

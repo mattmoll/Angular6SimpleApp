@@ -17,7 +17,18 @@ export class ItemsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.items = this.itemService.getItems();
+    this.itemService.getItems().subscribe(items => {
+      this.items = items;
+    });
+  }
+
+  onSelect(item:Item){
+     this.itemService.setFormItem(item);
+  }
+
+  onDelete(item:Item){
+    if(confirm("Are you sure you want to delete the item?"))
+      this.itemService.deleteItem(item);
   }
 
 }
