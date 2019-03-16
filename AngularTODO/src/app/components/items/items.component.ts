@@ -12,7 +12,11 @@ export class ItemsComponent implements OnInit {
 
   items : Item[];
 
+  selectedItem: Item;
+  loaded: boolean;
+
   constructor(private itemService: ItemService) { 
+    this.loaded = true;
   }
 
 
@@ -20,10 +24,16 @@ export class ItemsComponent implements OnInit {
     this.itemService.getItems().subscribe(items => {
       this.items = items;
     });
+
+    this.itemService.resetSelected.subscribe(reset =>{
+      if(reset)
+        this.selectedItem = this.itemService.getEmptyItem();
+    })
   }
 
   onSelect(item:Item){
      this.itemService.setFormItem(item);
+     this.selectedItem = item;
   }
 
   onDelete(item:Item){

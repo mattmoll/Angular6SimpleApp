@@ -1,9 +1,16 @@
-<ul class="list-group">
-  <li *ngFor="let item of items" class="list-group-item d-flex mb-1 justify-content-between align-items-center">
+<ul class="list-group" *ngIf="items?.length > 0">
+  <li *ngFor="let item of items" class="list-group-item d-flex mb-1 justify-content-between align-items-center itemsTodo" 
+        [class.unselectedItem]="selectedItem !== item"  [class.selectedItem]="selectedItem === item">
     <a (click)="onSelect(item)" href="#"> {{item.description}}</a>
     <span class="log-date"> {{ item.dateCreated | date: 'short'}} </span>
     <i (click)="onDelete(item)" class="fa fa-remove clickable"></i>
   </li>
 </ul>
+
+
+<div class="alert alert-primary" role="alert" *ngIf="items?.length == 0">
+    <h6 class="alert-heading">There are no items TO DO</h6>
+    Don´t be lazy create your TODO list for today!
+</div>
 
 

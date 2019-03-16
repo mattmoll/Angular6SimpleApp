@@ -37,11 +37,12 @@ export class ItemFormComponent implements OnInit {
       this.itemService.addItem(this.itemOnScreen);
     }
 
-    console.log(this.itemOnScreen);
+    this.resetItemForm();
   }
 
   resetItemForm(){
     this.itemOnScreen = this.itemService.getEmptyItem();
+    this.itemService.resetSelectedItem();
   }
 
   get buttonText(): string { 

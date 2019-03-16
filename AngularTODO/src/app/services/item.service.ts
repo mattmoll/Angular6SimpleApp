@@ -13,10 +13,13 @@ export class ItemService {
   private itemSource = new BehaviorSubject<Item>(this.getEmptyItem());
   selectedItem =  this.itemSource.asObservable();
 
+  private resetSelectedSource = new BehaviorSubject<boolean>(true);
+  resetSelected =  this.resetSelectedSource.asObservable();
+
   constructor() {
     this.items = [
-                  {id:2, description:"Test", priority:1, dateCreated: new Date(1,1,2019)},
-                  {id:1, description:"Test 2", priority:3, dateCreated: new Date(3,3,2019)}
+      // {id:2, description:"Test", priority:1, dateCreated: new Date(1,1,2019)},
+      // {id:1, description:"Test 2", priority:3, dateCreated: new Date(3,3,2019)}
     ];
    }
 
@@ -48,6 +51,10 @@ export class ItemService {
 
    setFormItem(item:Item){
     this.itemSource.next(item);
+   }
+
+   resetSelectedItem(){
+     this.resetSelectedSource.next(true);
    }
 
   getEmptyItem(): Item{

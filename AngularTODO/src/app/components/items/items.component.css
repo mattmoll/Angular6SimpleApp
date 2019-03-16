@@ -1,3 +1,21 @@
 .clickable{
     cursor: pointer;
 }
+
+.selectedItem{
+    background: #bbdcf9;
+    -webkit-transition: background-color 400ms linear;
+    -ms-transition: background-color 400ms linear;
+    transition: background-color 400ms linear;
+}
+
+.unselectedItem{
+    background: white;
+    -webkit-transition: background-color 400ms linear;
+    -ms-transition: background-color 400ms linear;
+    transition: background-color 400ms linear;
+}
+
+.itemsTodo:hover{
+    animation: pop 0.3s linear 1;
+  }
