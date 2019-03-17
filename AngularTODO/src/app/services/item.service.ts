@@ -17,28 +17,39 @@ export class ItemService {
   resetSelected =  this.resetSelectedSource.asObservable();
 
   constructor() {
-    this.items = [
-      // {id:2, description:"Test", priority:1, dateCreated: new Date(1,1,2019)},
-      // {id:1, description:"Test 2", priority:3, dateCreated: new Date(3,3,2019)}
-    ];
+    this.items = [];
    }
 
    getItems() : Observable<Item[]> {
-     return of(this.items);
+    if(localStorage.getItem('items') === null)
+      this.items = [];
+    else
+      this.items = JSON.parse(localStorage.getItem('items'));
+    
+    this.items = this.items.sort((itemA, itemB) => itemA.priority - itemB.priority);  
+
+    return of(this.items);
    }
 
    addItem(itemToAdd:Item){
-      itemToAdd.id = this.items.length > 0 ? this.items[0].id + 1 : 1;
+     console.log(this.getMaxId());
+      itemToAdd.id = this.items.length > 0 ? this.getMaxId() + 1 : 1;
       this.items.unshift(itemToAdd);
+  
+      this.sortItemsByPriority();
+      this.updateLocalStorage();
    }
 
    updateItem(itemToUpdate:Item){
-      this.items.forEach((currentItem, index)=>{
-        if(currentItem.id == itemToUpdate.id){
-          this.items.splice(index, 1);
-        }
-      })
-      this.items.unshift(itemToUpdate);
+    this.items.forEach((currentItem, index)=>{
+      if(currentItem.id == itemToUpdate.id){
+        this.items.splice(index, 1);
+      }
+    })
+    this.items.unshift(itemToUpdate);
+
+    this.sortItemsByPriority();
+    this.updateLocalStorage();
    }
 
    deleteItem(itemToDelete:Item){
@@ -47,6 +58,9 @@ export class ItemService {
         this.items.splice(index, 1);
       }
     })
+
+    this.sortItemsByPriority();
+    this.updateLocalStorage();
    }
 
    setFormItem(item:Item){
@@ -55,6 +69,24 @@ export class ItemService {
 
    resetSelectedItem(){
      this.resetSelectedSource.next(true);
+   }
+
+   // Helpers
+
+   getMaxId(){
+     return this.items.reduce((maxPrevItem, nextItem)=>  this.getItemFromId(Math.max(maxPrevItem.id, nextItem.id))).id;
+   }
+
+   getItemFromId(id : number): Item {
+    return this.items.find((item) => item.id ===id);
+   }
+
+   updateLocalStorage(){
+    localStorage.setItem('items', JSON.stringify(this.items));
+   }
+
+   sortItemsByPriority(){
+    this.items = this.items.sort((itemA, itemB) => itemA.priority - itemB.priority); 
    }
 
   getEmptyItem(): Item{

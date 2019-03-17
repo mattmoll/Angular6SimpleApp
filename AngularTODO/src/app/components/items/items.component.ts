@@ -13,10 +13,8 @@ export class ItemsComponent implements OnInit {
   items : Item[];
 
   selectedItem: Item;
-  loaded: boolean;
 
   constructor(private itemService: ItemService) { 
-    this.loaded = true;
   }
 
 
