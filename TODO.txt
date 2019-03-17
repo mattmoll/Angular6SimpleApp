@@ -1,8 +1,3 @@
 TODO:
 
-- Style navbar (logo from font awesome probably right aligned)
-
-- Add persistence to local storage.
-
-- Play with the priorities (background colors, vs ordering, or both).
 
