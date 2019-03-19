@@ -18,4 +18,8 @@
 
 .itemsTodo:hover{
     animation: pop 0.3s linear 1;
+    background: #efefef;
+    -webkit-transition: background-color 400ms linear;
+    -ms-transition: background-color 400ms linear;
+    transition: background-color 400ms linear;
   }

@@ -1,7 +1,7 @@
 <ul class="list-group" *ngIf="items?.length > 0">
-  <li *ngFor="let item of items" class="list-group-item d-flex mb-1 justify-content-between align-items-center itemsTodo" 
-        [class.unselectedItem]="selectedItem !== item"  [class.selectedItem]="selectedItem === item">
-    <a (click)="onSelect(item)" href="#"> {{item.description}}</a>
+  <li *ngFor="let item of items" class="list-group-item d-flex mb-1 justify-content-between align-items-center itemsTodo clickable" 
+        [class.unselectedItem]="selectedItem !== item"  [class.selectedItem]="selectedItem === item" (click)="onSelect(item)">
+    <a  href="#"> {{item.description}}</a>
     <span class="item-date"> {{ item.dateCreated | date: 'short'}} </span>
     <i (click)="onDelete(item)" class="fa fa-remove clickable"></i>
   </li>
